@@ -25,6 +25,7 @@ export const metadata: Metadata = {
   title: "Vecchio — shared page",
   description:
     "A shared page across your devices. Anyone with the four-character code can write — no account.",
+  icons: { icon: [{ url: "/favicon.svg", type: "image/svg+xml" }] },
 };
 
 export const viewport: Viewport = {
