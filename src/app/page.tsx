@@ -142,8 +142,7 @@ machine. Equal seats. No host.`}
 
         {pinnedCodes.length === 0 && (
           <p className="hint">
-            No pinned pages yet. Pin from the page toolbar (local:{" "}
-            <code className="type">pnpm dev</code> so the registry runs).
+            No pinned pages yet. Pin a page from its toolbar to keep it here.
           </p>
         )}
 
