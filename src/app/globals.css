@@ -1,24 +1,25 @@
 @import "tailwindcss";
 
-/* Candlelit oak desk + gall ink on laid paper.
-   Process from Quell (tokens + display/UI pairing). Look is not Quell. */
+/* Bookish writing room: plaster desk, laid sheet, iron-gall ink.
+   Chrome stays grey-warm and quiet. Not a cave, not Quell, not nocturnal SaaS. */
 :root {
-  --oak: #1a120c;
-  --oak-lift: #261910;
-  --paper: #e4d2b4;
-  --paper-bright: #eadcc4;
-  --ink: #1c140e;
-  --muted: #7a6450;
-  --line: #c4ae90;
-  --flame: #c4925a;
-  --wax: #f3e6cf;
-  --danger: #8b3a2a;
-  --live: #3f5c3c;
-  --radius: 2px;
+  --paper: #f6f3ec;
+  --sheet: #fffcf7;
+  --chrome: #eeebe4;
+  --ink: #1c1916;
+  --ink-hover: #2e2a26;
+  --muted: #4f4b45;
+  --line: #e4dfd6;
+  --rule: #c9c3b8;
+  --live: #2f5a45;
+  --danger: #9b3a2c;
+  --select: #ddd6c8;
+  --radius: 8px;
+  --paper-bright: var(--sheet);
 }
 
 @theme inline {
-  --color-background: var(--oak);
+  --color-background: var(--paper);
   --color-foreground: var(--ink);
   --font-sans: var(--font-figtree);
   --font-serif: var(--font-eb-garamond);
@@ -29,21 +30,22 @@ html,
 body {
   height: 100%;
   margin: 0;
-  background: var(--oak);
-  color: var(--wax);
+  background: var(--paper);
+  color: var(--ink);
+  color-scheme: light;
   overscroll-behavior: none;
 }
 
 body {
   font-family: var(--font-figtree), "Segoe UI", system-ui, sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.5;
   overflow: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--flame) 45%, transparent);
+  background: var(--select);
   color: var(--ink);
 }
 
@@ -55,10 +57,11 @@ body {
 }
 
 .kicker {
-  font-size: 0.64rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  color: var(--muted);
 }
 
 .type {
@@ -71,7 +74,7 @@ body {
   height: 100dvh;
   max-height: 100dvh;
   overflow: hidden;
-  background: var(--oak);
+  background: var(--paper);
 }
 
 .atmosphere {
@@ -80,18 +83,11 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background:
-    radial-gradient(900px 520px at 12% -8%, color-mix(in srgb, var(--flame) 28%, transparent), transparent 58%),
-    radial-gradient(700px 480px at 80% 110%, color-mix(in srgb, var(--oak-lift) 80%, transparent), transparent 50%),
-    var(--oak);
+  background: var(--chrome);
 }
 
 .atmosphere::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(180deg, transparent 70%, color-mix(in srgb, var(--oak) 35%, transparent));
+  content: none;
 }
 
 .folio {
@@ -100,13 +96,13 @@ body {
   width: min(22rem, 78%);
   min-height: 16rem;
   padding: 1.75rem 1.6rem 1.9rem;
-  background:
-    linear-gradient(180deg, color-mix(in srgb, var(--wax) 55%, transparent), transparent 18%),
-    var(--paper);
+  background: var(--sheet);
   color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 12px;
   box-shadow:
-    0 1px 0 color-mix(in srgb, var(--wax) 70%, transparent) inset,
-    0 18px 50px color-mix(in srgb, #000 45%, transparent);
+    0 1px 0 color-mix(in srgb, #fff 70%, transparent) inset,
+    0 14px 40px color-mix(in srgb, var(--ink) 8%, transparent);
 }
 
 .folio-kicker {
@@ -115,10 +111,10 @@ body {
 
 .folio-lines {
   margin: 1.1rem 0 0;
-  font-family: var(--font-courier-prime), "Courier New", ui-monospace, monospace;
-  font-size: 0.92rem;
-  line-height: 1.85;
-  color: color-mix(in srgb, var(--ink) 82%, var(--muted));
+  font-family: var(--font-eb-garamond), "Palatino Linotype", Palatino, serif;
+  font-size: 1.12rem;
+  line-height: 1.7;
+  color: var(--ink);
   white-space: pre-line;
 }
 
@@ -131,8 +127,9 @@ body {
   overflow-y: auto;
   overscroll-behavior: none;
   padding: 2.4rem 2.2rem 2.6rem;
-  background: var(--paper);
+  background: var(--sheet);
   color: var(--ink);
+  border-left: 1px solid var(--line);
 }
 
 .join .kicker {
@@ -142,49 +139,51 @@ body {
 .join-title {
   font-size: 2.55rem;
   margin: 0.35rem 0 0;
+  color: var(--ink);
 }
 
 .join-lead {
   margin: 0.65rem 0 0;
   max-width: 28rem;
-  color: color-mix(in srgb, var(--ink) 78%, var(--muted));
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.55;
 }
 
 .field-label {
   display: block;
   margin-bottom: 0.4rem;
-  font-size: 0.78rem;
+  font-size: 0.8125rem;
   font-weight: 600;
   color: var(--muted);
 }
 
 .field {
   width: 100%;
-  border: 0;
-  border-bottom: 1px solid var(--line);
-  border-radius: 0;
-  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--sheet);
   color: var(--ink);
   outline: none;
 }
 
 .field:focus {
-  border-bottom-color: var(--ink);
+  border-color: var(--ink);
 }
 
 .code-input {
-  padding: 0.55rem 0 0.45rem;
+  padding: 0.7rem 0.75rem 0.65rem;
   font-family: var(--font-courier-prime), "Courier New", ui-monospace, monospace;
-  font-size: 1.55rem;
+  font-size: 1.45rem;
   letter-spacing: 0.42em;
   text-align: center;
   text-transform: uppercase;
 }
 
 .pin-input {
-  padding: 0.45rem 0;
+  padding: 0.6rem 0.75rem;
   font-family: var(--font-courier-prime), "Courier New", ui-monospace, monospace;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   letter-spacing: 0.45em;
   text-align: center;
 }
@@ -200,12 +199,12 @@ body {
 .btn-ink {
   border: 1px solid var(--ink);
   background: var(--ink);
-  color: var(--paper);
+  color: var(--sheet);
 }
 
 .btn-ink:hover {
-  background: var(--oak-lift);
-  border-color: var(--oak-lift);
+  background: var(--ink-hover);
+  border-color: var(--ink-hover);
 }
 
 .btn-ink:disabled {
@@ -214,24 +213,24 @@ body {
 }
 
 .btn-ghost {
-  border: 1px solid color-mix(in srgb, var(--ink) 28%, var(--line));
+  border: 1px solid var(--line);
   background: transparent;
   color: var(--ink);
 }
 
 .btn-ghost:hover {
-  background: color-mix(in srgb, var(--ink) 6%, var(--paper));
+  background: var(--chrome);
 }
 
 .err {
   margin: 0;
-  font-size: 0.82rem;
+  font-size: 0.875rem;
   color: var(--danger);
 }
 
 .hint {
   margin: 0;
-  font-size: 0.78rem;
+  font-size: 0.875rem;
   color: var(--muted);
 }
 
@@ -241,7 +240,7 @@ body {
   gap: 0.55rem;
   margin-top: 0.2rem;
   padding-top: 1.1rem;
-  border-top: 1px solid color-mix(in srgb, var(--ink) 12%, var(--line));
+  border-top: 1px solid var(--line);
 }
 
 .ledger-row {
@@ -254,10 +253,10 @@ body {
   font-family: var(--font-courier-prime), "Courier New", ui-monospace, monospace;
   font-size: 0.88rem;
   letter-spacing: 0.18em;
-  padding: 0.35rem 0.55rem;
-  border: 1px solid transparent;
-  border-bottom: 1px solid var(--line);
-  background: transparent;
+  padding: 0.4rem 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper);
   color: var(--ink);
   cursor: pointer;
 }
@@ -265,6 +264,7 @@ body {
 .ledger-code:hover,
 .ledger-code[aria-pressed="true"] {
   border-color: var(--ink);
+  background: var(--sheet);
 }
 
 .masthead {
@@ -272,44 +272,47 @@ body {
   flex-wrap: wrap;
   align-items: center;
   gap: 0.55rem 0.75rem;
-  padding: 0.7rem 1rem;
-  background: var(--oak);
-  color: var(--wax);
-  border-bottom: 1px solid color-mix(in srgb, var(--flame) 18%, var(--oak-lift));
+  padding: 0.7rem 1.1rem;
+  background: var(--sheet);
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
 }
 
 .masthead a {
-  color: color-mix(in srgb, var(--wax) 80%, var(--flame));
+  color: var(--ink);
   text-decoration: none;
 }
 
 .masthead a:hover {
-  color: var(--wax);
+  color: var(--ink-hover);
 }
 
 .masthead .wordmark {
-  font-size: 1.2rem;
-  color: var(--wax);
+  font-size: 1.25rem;
+  color: var(--ink);
 }
 
 .code-mark {
   font-family: var(--font-courier-prime), "Courier New", ui-monospace, monospace;
-  font-size: 0.95rem;
-  letter-spacing: 0.22em;
-  color: var(--paper);
+  font-size: 0.92rem;
+  letter-spacing: 0.18em;
+  color: var(--muted);
 }
 
 .kept {
-  font-size: 0.64rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--flame);
+  color: var(--live);
+  background: color-mix(in srgb, var(--live) 12%, var(--sheet));
+  border-radius: 999px;
+  padding: 0.18rem 0.5rem;
 }
 
 .expiry {
-  font-size: 0.75rem;
-  color: color-mix(in srgb, var(--wax) 55%, var(--muted));
+  font-size: 0.8125rem;
+  color: var(--muted);
 }
 
 .icon-btn,
@@ -325,19 +328,20 @@ body {
 .icon-btn {
   width: 2rem;
   height: 2rem;
-  border: 1px solid color-mix(in srgb, var(--wax) 18%, transparent);
-  background: color-mix(in srgb, var(--oak-lift) 80%, transparent);
-  color: var(--wax);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--ink);
 }
 
 .icon-btn:hover {
-  border-color: color-mix(in srgb, var(--wax) 40%, transparent);
+  background: var(--chrome);
+  border-color: var(--line);
 }
 
 .icon-btn[aria-pressed="true"],
 .icon-btn.is-on {
-  background: var(--paper);
-  border-color: var(--paper);
+  background: color-mix(in srgb, var(--ink) 8%, var(--sheet));
+  border-color: var(--line);
   color: var(--ink);
 }
 
@@ -347,36 +351,41 @@ body {
 }
 
 .text-btn {
-  border: 1px solid color-mix(in srgb, var(--wax) 22%, transparent);
+  border: 1px solid var(--line);
   background: transparent;
-  color: var(--wax);
-  font-size: 0.72rem;
-  letter-spacing: 0.04em;
-  padding: 0.28rem 0.55rem;
+  color: var(--ink);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  padding: 0.32rem 0.6rem;
 }
 
 .text-btn:hover {
-  background: color-mix(in srgb, var(--wax) 8%, transparent);
+  background: var(--chrome);
 }
 
 .pin-field {
   width: 5.5rem;
-  border: 0;
-  border-bottom: 1px solid color-mix(in srgb, var(--wax) 35%, transparent);
-  background: transparent;
-  color: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--sheet);
+  color: var(--ink);
   font-family: var(--font-courier-prime), "Courier New", ui-monospace, monospace;
   font-size: 0.85rem;
   letter-spacing: 0.2em;
   text-align: center;
   outline: none;
+  padding: 0.28rem 0.35rem;
+}
+
+.pin-field:focus {
+  border-color: var(--ink);
 }
 
 .peers {
   width: 100%;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   text-align: right;
-  color: color-mix(in srgb, var(--wax) 62%, var(--muted));
+  color: var(--muted);
 }
 
 @media (min-width: 640px) {
@@ -387,38 +396,48 @@ body {
 }
 
 .peers.is-live {
-  color: color-mix(in srgb, var(--paper) 70%, var(--live));
+  color: var(--live);
 }
 
 .peers.is-err {
-  color: color-mix(in srgb, var(--wax) 50%, var(--danger));
+  color: var(--danger);
 }
 
 .banner-err {
   margin: 0;
-  padding: 0.55rem 1rem;
-  background: color-mix(in srgb, var(--danger) 18%, var(--oak));
-  color: var(--paper);
-  font-size: 0.85rem;
+  padding: 0.55rem 1.1rem;
+  background: color-mix(in srgb, var(--danger) 10%, var(--sheet));
+  color: var(--danger);
+  border-bottom: 1px solid color-mix(in srgb, var(--danger) 22%, var(--line));
+  font-size: 0.875rem;
 }
 
 .sheet {
-  --session-inset-pad: 3.25rem;
+  --session-inset-pad: 3.5rem;
   position: relative;
   display: flex;
   flex-direction: column;
   min-height: 0;
   flex: 1;
   overflow: clip;
-  background:
-    linear-gradient(180deg, color-mix(in srgb, var(--wax) 40%, transparent), transparent 14%),
-    var(--paper);
+  background: var(--sheet);
   color: var(--ink);
 }
 
 .sheet textarea,
 .sheet .session-scroll {
   overscroll-behavior: none;
+  max-width: 42rem;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.sheet .session-scroll {
+  min-height: 0;
+  flex: 1;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 2.1rem 1.5rem var(--session-inset-pad);
 }
 
 .sheet textarea {
@@ -427,12 +446,17 @@ body {
   resize: none;
   border: 0;
   background: transparent;
-  padding: 1.35rem 1.4rem var(--session-inset-pad);
-  font-family: var(--font-courier-prime), "Courier New", ui-monospace, monospace;
-  font-size: 0.95rem;
+  padding: 2.1rem 1.5rem var(--session-inset-pad);
+  font-family: var(--font-eb-garamond), "Palatino Linotype", Palatino, serif;
+  font-size: 1.125rem;
   line-height: 1.7;
   color: var(--ink);
   outline: none;
+  caret-color: var(--ink);
+}
+
+.sheet textarea::placeholder {
+  color: var(--muted);
 }
 
 .sheet-actions {
@@ -445,10 +469,10 @@ body {
 }
 
 .sheet-actions .icon-btn {
-  background: color-mix(in srgb, var(--paper-bright) 88%, var(--ink));
+  background: var(--sheet);
   border-color: var(--line);
   color: var(--ink);
-  box-shadow: 0 1px 2px color-mix(in srgb, var(--ink) 12%, transparent);
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--ink) 8%, transparent);
 }
 
 .unlock {
@@ -459,16 +483,17 @@ body {
   justify-content: center;
   gap: 1rem;
   padding: 1.5rem;
-  background:
-    radial-gradient(700px 380px at 50% 0%, color-mix(in srgb, var(--flame) 16%, transparent), transparent 55%),
-    var(--oak);
+  background: var(--paper);
 }
 
 .unlock-card {
   width: min(22rem, 100%);
-  padding: 1.6rem 1.4rem 1.5rem;
-  background: var(--paper);
+  padding: 1.7rem 1.5rem 1.55rem;
+  background: var(--sheet);
   color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 14px 40px color-mix(in srgb, var(--ink) 8%, transparent);
 }
 
 .unlock-card .kicker {
@@ -484,19 +509,21 @@ body {
   height: 100dvh;
   align-items: center;
   justify-content: center;
-  background: var(--oak);
-  color: var(--wax);
+  background: var(--paper);
+  color: var(--ink);
   text-align: center;
 }
 
 .invalid a {
-  color: var(--flame);
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
 }
 
 .markdown-preview {
   color: var(--ink);
   line-height: 1.7;
-  font-size: 0.98rem;
+  font-size: 1.125rem;
   font-family: var(--font-eb-garamond), "Palatino Linotype", Palatino, serif;
 }
 
@@ -509,13 +536,13 @@ body {
 }
 
 .markdown-preview h1 {
-  font-size: 1.55rem;
+  font-size: 1.85rem;
 }
 .markdown-preview h2 {
-  font-size: 1.28rem;
+  font-size: 1.4rem;
 }
 .markdown-preview h3 {
-  font-size: 1.1rem;
+  font-size: 1.18rem;
 }
 
 .markdown-preview p {
@@ -528,6 +555,14 @@ body {
   padding-left: 1.5em;
 }
 
+.markdown-preview ul {
+  list-style: disc;
+}
+
+.markdown-preview ol {
+  list-style: decimal;
+}
+
 .markdown-preview li {
   margin: 0.25em 0;
 }
@@ -535,16 +570,18 @@ body {
 .markdown-preview code {
   font-family: var(--font-courier-prime), "Courier New", ui-monospace, monospace;
   font-size: 0.82em;
-  background: color-mix(in srgb, var(--ink) 6%, var(--paper-bright));
+  background: var(--chrome);
   padding: 0.12em 0.3em;
+  border-radius: 4px;
 }
 
 .markdown-preview pre {
   margin: 1em 0;
   padding: 1em;
   overflow-x: auto;
-  background: color-mix(in srgb, var(--ink) 6%, var(--paper-bright));
+  background: var(--chrome);
   border: 1px solid var(--line);
+  border-radius: var(--radius);
 }
 
 .markdown-preview pre code {
@@ -555,13 +592,14 @@ body {
 .markdown-preview blockquote {
   margin: 1em 0;
   padding-left: 1em;
-  border-left: 2px solid var(--flame);
+  border-left: 2px solid var(--rule);
   color: var(--muted);
 }
 
 .markdown-preview a {
-  color: var(--oak-lift);
+  color: var(--ink);
   text-decoration: underline;
+  text-underline-offset: 0.12em;
 }
 
 .markdown-preview table {
@@ -592,21 +630,23 @@ body {
 @media (max-width: 840px) {
   .desk-home {
     grid-template-columns: 1fr;
-    grid-template-rows: 8.5rem 1fr;
+    grid-template-rows: 7.5rem 1fr;
+  }
+
+  .join {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    padding: 1.5rem 1.25rem 2rem;
   }
 
   .folio {
     width: min(18rem, 70%);
     min-height: 0;
     padding: 0.9rem 1rem;
-    transform: rotate(-2deg);
+    transform: rotate(-1.5deg);
   }
 
   .folio-lines {
     display: none;
-  }
-
-  .join {
-    padding: 1.5rem 1.25rem 2rem;
   }
 }
